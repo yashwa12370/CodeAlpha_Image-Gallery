@@ -1,0 +1,734 @@
+/* ================= RESET ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ================= BODY ================= */
+
+body {
+    font-family: Arial, sans-serif;
+
+    background: #f5f7fb;
+
+    color: #222;
+
+    min-height: 100vh;
+}
+
+
+/* ================= HEADER ================= */
+
+.header {
+    width: 90%;
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 35px 0 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+
+.header h1 {
+    font-size: 38px;
+
+    margin-bottom: 8px;
+}
+
+
+.header p {
+    color: #777;
+
+    font-size: 15px;
+}
+
+
+/* ================= UPLOAD BUTTON ================= */
+
+.upload-btn {
+    border: none;
+
+    background: #111;
+
+    color: white;
+
+    padding: 13px 22px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    transition: 0.3s;
+}
+
+
+.upload-btn:hover {
+    transform: translateY(-2px);
+
+    background: #333;
+}
+
+
+/* ================= SEARCH ================= */
+
+.controls {
+    width: 90%;
+
+    max-width: 1200px;
+
+    margin: 20px auto;
+}
+
+
+#searchInput {
+    width: 100%;
+
+    padding: 15px 18px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 12px;
+
+    outline: none;
+
+    font-size: 15px;
+
+    background: white;
+}
+
+
+#searchInput:focus {
+    border-color: #888;
+}
+
+
+/* ================= FILTERS ================= */
+
+.filters {
+    width: 90%;
+
+    max-width: 1200px;
+
+    margin: 20px auto;
+
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+
+.filter-btn {
+    border: none;
+
+    background: white;
+
+    color: #555;
+
+    padding: 10px 17px;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    border: 1px solid #e2e2e2;
+
+    transition: 0.3s;
+}
+
+
+.filter-btn:hover {
+    transform: translateY(-2px);
+}
+
+
+.filter-btn.active {
+    background: #111;
+
+    color: white;
+
+    border-color: #111;
+}
+
+
+/* ================= IMAGE COUNT ================= */
+
+.gallery-info {
+    width: 90%;
+
+    max-width: 1200px;
+
+    margin: 25px auto 15px;
+}
+
+
+.gallery-info p {
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+/* ================= GALLERY ================= */
+
+.gallery {
+    width: 90%;
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding-bottom: 50px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+}
+
+
+/* ================= GALLERY ITEM ================= */
+
+.gallery-item {
+    position: relative;
+
+    height: 260px;
+
+    overflow: hidden;
+
+    border-radius: 15px;
+
+    background: white;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.08);
+
+    transition: 0.3s;
+}
+
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.14);
+}
+
+
+/* ================= IMAGE ================= */
+
+.gallery-item img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition:
+        transform 0.5s ease;
+}
+
+
+.gallery-item:hover img {
+    transform: scale(1.08);
+}
+
+
+/* ================= OVERLAY ================= */
+
+.overlay {
+    position: absolute;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    padding: 25px 18px 17px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0, 0, 0, 0.8)
+        );
+
+    transition: 0.3s;
+}
+
+
+.overlay h3 {
+    font-size: 18px;
+
+    margin-bottom: 5px;
+}
+
+
+.overlay span {
+    font-size: 13px;
+
+    opacity: 0.9;
+}
+
+
+/* ================= DELETE BUTTON ================= */
+
+.delete-image {
+    position: absolute;
+
+    top: 10px;
+
+    right: 10px;
+
+    z-index: 5;
+
+    width: 38px;
+
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background:
+        rgba(0, 0, 0, 0.65);
+
+    color: white;
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    transition: 0.3s;
+}
+
+
+.gallery-item:hover .delete-image {
+    opacity: 1;
+}
+
+
+.delete-image:hover {
+    background: #d9534f;
+
+    transform: scale(1.08);
+}
+
+
+/* ================= MODAL ================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(0, 0, 0, 0.65);
+
+    display: none;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 1000;
+
+    padding: 20px;
+}
+
+
+.modal.show {
+    display: flex;
+}
+
+
+.modal-content {
+    position: relative;
+
+    width: 100%;
+
+    max-width: 450px;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 50px
+        rgba(0, 0, 0, 0.25);
+}
+
+
+.modal-content h2 {
+    margin-bottom: 8px;
+}
+
+
+.modal-subtitle {
+    color: #777;
+
+    margin-bottom: 25px;
+
+    font-size: 14px;
+}
+
+
+.modal-content label {
+    display: block;
+
+    margin:
+        15px 0 7px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+
+.modal-content input[type="text"],
+.modal-content select {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    background: white;
+}
+
+
+#imageInput {
+    display: none;
+}
+
+
+.file-label {
+    display: inline-block !important;
+
+    background: #111;
+
+    color: white;
+
+    padding: 11px 17px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+
+#fileName {
+    margin-top: 10px;
+
+    color: #777;
+
+    font-size: 13px;
+}
+
+
+.save-btn {
+    width: 100%;
+
+    margin-top: 22px;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #111;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    transition: 0.3s;
+}
+
+
+.save-btn:hover {
+    background: #333;
+}
+
+
+.storage-note {
+    text-align: center;
+
+    margin-top: 15px;
+
+    color: #888;
+
+    font-size: 12px;
+}
+
+
+.modal-close {
+    position: absolute;
+
+    top: 12px;
+
+    right: 15px;
+
+    border: none;
+
+    background: none;
+
+    font-size: 30px;
+
+    cursor: pointer;
+
+    color: #555;
+}
+
+
+/* ================= LIGHTBOX ================= */
+
+.lightbox {
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(0, 0, 0, 0.92);
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 2000;
+
+    padding: 30px;
+}
+
+
+.lightbox.show {
+    display: flex;
+}
+
+
+.lightbox-content {
+    max-width: 850px;
+
+    max-height: 90vh;
+
+    text-align: center;
+}
+
+
+.lightbox-content img {
+    max-width: 100%;
+
+    max-height: 75vh;
+
+    border-radius: 12px;
+
+    object-fit: contain;
+}
+
+
+.lightbox-content h2 {
+    color: white;
+
+    margin-top: 15px;
+
+    font-size: 20px;
+}
+
+
+.lightbox-close {
+    position: absolute;
+
+    top: 20px;
+
+    right: 25px;
+
+    background: none;
+
+    border: none;
+
+    color: white;
+
+    font-size: 40px;
+
+    cursor: pointer;
+}
+
+
+.nav-btn {
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    background:
+        rgba(255, 255, 255, 0.15);
+
+    color: white;
+
+    width: 50px;
+
+    height: 50px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    font-size: 20px;
+
+    transition: 0.3s;
+}
+
+
+.nav-btn:hover {
+    background:
+        rgba(255, 255, 255, 0.3);
+}
+
+
+.nav-btn.prev {
+    left: 25px;
+}
+
+
+.nav-btn.next {
+    right: 25px;
+}
+
+
+/* ================= TABLET ================= */
+
+@media (max-width: 900px) {
+
+    .gallery {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 650px) {
+
+    .header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+
+    .header h1 {
+        font-size: 30px;
+    }
+
+
+    .upload-btn {
+        width: 100%;
+    }
+
+
+    .gallery {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 12px;
+    }
+
+
+    .gallery-item {
+        height: 200px;
+    }
+
+
+    .nav-btn {
+        width: 42px;
+
+        height: 42px;
+    }
+
+
+    .nav-btn.prev {
+        left: 10px;
+    }
+
+
+    .nav-btn.next {
+        right: 10px;
+    }
+
+
+    .lightbox {
+        padding: 15px;
+    }
+
+
+    .delete-image {
+        opacity: 1;
+    }
+
+}
+
+
+/* ================= SMALL MOBILE ================= */
+
+@media (max-width: 420px) {
+
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+
+    .gallery-item {
+        height: 250px;
+    }
+
+
+    .filters {
+        gap: 7px;
+    }
+
+
+    .filter-btn {
+        padding: 8px 12px;
+
+        font-size: 13px;
+    }
+
+}
